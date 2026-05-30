@@ -1,0 +1,2 @@
+[console_scripts]
+documind = documind.cli:main
