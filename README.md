@@ -1,15 +1,15 @@
 <div align="center">
 
-# 📚 DocuMind
+# 🧠 DocuMind
 
-**Lightweight Document Intelligence Processing Engine**
+**Lightweight AI Document Intelligence Parser**
 
-**轻量级文档智能处理引擎**
+**轻量级AI文档智能解析工具**
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-orange.svg)]()
-[![Platform](https://img.shields.io/badge/Platform-Cross--Platform-lightgrey.svg)]()
+[![Version](https://img.shields.io/badge/Version-1.0.0-orange.svg)](https://github.com/yourusername/documind)
+[![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-brightgreen.svg)](requirements.txt)
 
 [English](#english) | [简体中文](#简体中文) | [繁體中文](#繁體中文)
 
@@ -18,161 +18,156 @@
 ---
 
 <a name="english"></a>
-## 🎉 Introduction
+## 🎉 Project Introduction
 
-**DocuMind** is a lightweight, zero-dependency document intelligence processing engine that transforms complex documents into structured knowledge. Built with pure Python standard library, it provides powerful document analysis capabilities without requiring any external dependencies.
+DocuMind is a **zero-dependency**, **local-first** document parsing and structured data extraction tool. Inspired by popular projects like Microsoft's markitdown and LlamaIndex's liteparse, DocuMind focuses on providing a lightweight, fast, and intelligent document processing solution.
 
-### 💡 Why DocuMind?
+### ✨ Key Differentiators
 
-- **🚀 Zero Dependencies**: Uses only Python standard library - no pip install nightmares
-- **📄 Multi-Format Support**: PDF, TXT, Markdown, DOCX out of the box
-- **🧠 Intelligent Analysis**: Automatic summarization, keyword extraction, knowledge graph generation
-- **⚡ Lightweight & Fast**: Minimal resource footprint, blazing fast processing
-- **🎯 Developer-Friendly**: Clean API, TUI interface, easy to integrate
+- 🚀 **Zero Dependencies**: Uses only Python standard library - no external packages required
+- 🔒 **Privacy First**: All processing happens locally - your data never leaves your machine
+- ⚡ **Lightning Fast**: Optimized for speed with minimal resource usage
+- 🎯 **Multi-Format Support**: Handles TXT, MD, HTML, JSON, CSV, XML, and more
+- 🤖 **AI-Ready Output**: Structured output perfect for LLM consumption
 
-### ✨ Core Features
+---
 
-| Feature | Description |
-|---------|-------------|
-| 📖 **Multi-Format Parsing** | Extract content from PDF, TXT, Markdown, DOCX files |
-| 📝 **Smart Summarization** | Generate concise document summaries using TF-IDF |
-| 🔑 **Keyword Extraction** | Identify important terms and concepts automatically |
-| 🕸️ **Knowledge Graph** | Build entity relationship graphs from documents |
-| 📊 **Metadata Extraction** | Extract titles, headings, code blocks, tables, links |
-| 🗂️ **Batch Processing** | Process entire directories recursively |
-| 🖥️ **TUI Interface** | Beautiful terminal UI with progress bars and colors |
-| 📤 **JSON Export** | Export results for further analysis |
+## ✨ Core Features
+
+| Feature | Description | Emoji |
+|---------|-------------|-------|
+| **Document Parsing** | Extract structure from multiple formats | 📄 |
+| **Markdown Conversion** | Convert any document to clean Markdown | 📝 |
+| **Data Extraction** | Extract emails, URLs, dates, entities | 🔍 |
+| **Content Analysis** | Statistics, keywords, sentiment, topics | 📊 |
+| **Batch Processing** | Process multiple files efficiently | 🔄 |
+| **CLI Interface** | Easy-to-use command-line tool | 💻 |
 
 ---
 
 ## 🚀 Quick Start
 
-### Requirements
-
-- Python 3.8 or higher
-- No external dependencies required!
-
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/gitstq/DocuMind.git
-cd DocuMind
+git clone https://github.com/yourusername/documind.git
+cd documind
 
-# Or install via pip (when published)
-pip install documind
+# Install the package
+pip install -e .
 ```
 
-### Usage
+### Basic Usage
 
 ```bash
-# Process a single file
-python documind.py document.pdf
+# Parse a document
+documind parse document.txt
 
-# Process with all features
-python documind.py article.md --knowledge-graph --output result.json
+# Convert to Markdown
+documind convert document.html -o output.md
 
-# Batch process directory
-python documind.py ./documents --recursive --output batch_results.json
+# Extract structured data
+documind extract document.txt -o data.json
 
-# Skip summary generation
-python documind.py report.txt --no-summary
+# Analyze content
+documind analyze document.txt -o report.md
+
+# Batch process
+documind batch file1.txt file2.md file3.html -o ./output --command convert
 ```
 
 ---
 
 ## 📖 Detailed Usage Guide
 
-### Command-Line Options
-
-```bash
-python documind.py [INPUT] [OPTIONS]
-
-Arguments:
-  INPUT                 Input file or directory
-
-Options:
-  -r, --recursive       Process directories recursively
-  -o, --output FILE     Export results to JSON file
-  --no-summary          Skip summary generation
-  --no-keywords         Skip keyword extraction
-  -k, --knowledge-graph Build knowledge graph
-  -v, --version         Show version information
-  -h, --help            Show help message
-```
-
-### Python API
+### Document Parsing
 
 ```python
-from documind import DocumentProcessor
+from documind import DocumentParser
 
-# Initialize processor
-processor = DocumentProcessor()
+parser = DocumentParser()
+doc = parser.parse("document.md")
 
-# Process single file
-result = processor.process_file("document.pdf", {
-    'summarize': True,
-    'keywords': True,
-    'knowledge_graph': True
-})
-
-# Access results
-print(result['summary'])
-print(result['keywords'])
-print(result['knowledge_graph'])
-
-# Batch process
-results = processor.process_directory("./docs", recursive=True)
+print(f"Title: {doc.title}")
+print(f"Sections: {len(doc.sections)}")
+print(doc.to_json())
 ```
 
-### Supported Formats
+### Markdown Conversion
 
-| Format | Extension | Features |
-|--------|-----------|----------|
-| Plain Text | `.txt` | Full support |
-| Markdown | `.md`, `.markdown` | Headings, code blocks, links, lists, tables |
-| PDF | `.pdf` | Text extraction |
-| Word | `.docx` | Text extraction |
+```python
+from documind import MarkdownConverter
+
+converter = MarkdownConverter()
+markdown = converter.convert("document.html", include_toc=True)
+print(markdown)
+```
+
+### Data Extraction
+
+```python
+from documind import StructuredExtractor
+
+extractor = StructuredExtractor()
+data = extractor.extract_from_file("document.txt")
+
+print(f"Emails found: {data.get('email', [])}")
+print(f"URLs found: {data.get('url', [])}")
+```
+
+### Document Analysis
+
+```python
+from documind import DocumentAnalyzer
+
+analyzer = DocumentAnalyzer()
+report = analyzer.analyze_file("document.txt")
+
+print(f"Word count: {report['statistics']['word_count']}")
+print(f"Sentiment: {report['sentiment']['sentiment']}")
+```
 
 ---
 
 ## 💡 Design Philosophy
 
-### Zero-Dependency Architecture
+### Why DocuMind?
 
-DocuMind is built entirely on Python's standard library:
-- **PDF Parsing**: Custom binary parser without PyPDF2
-- **DOCX Parsing**: ZIP/XML parser without python-docx
-- **Text Analysis**: Custom TF-IDF without scikit-learn
-- **TUI**: ANSI escape codes without rich/curses
+1. **Simplicity**: No complex setup or dependencies
+2. **Speed**: Optimized for performance
+3. **Privacy**: Local processing only
+4. **Flexibility**: Works with any Python environment
 
-### Performance Optimized
+### Technical Choices
 
-- Streaming processing for large files
-- Memory-efficient text analysis
-- Parallel processing support (future)
+- **Pure Python**: Maximum compatibility
+- **Standard Library Only**: Zero dependency overhead
+- **Modular Design**: Use only what you need
+- **Type Hints**: Full type safety support
 
 ---
 
 ## 📦 Packaging & Deployment
 
-### Build Executable
+### Build Package
 
 ```bash
-# Install PyInstaller
-pip install pyinstaller
+# Build wheel
+python -m build
 
-# Build standalone executable
-pyinstaller --onefile --name documind documind.py
+# Install locally
+pip install dist/documind-1.0.0-py3-none-any.whl
 ```
 
-### Install as Package
+### Run Tests
 
 ```bash
-pip install -e .
+# Run all tests
+python -m unittest discover tests/ -v
 
-# Then use globally
-documind document.pdf
+# Run specific test
+python -m unittest tests.test_parser
 ```
 
 ---
@@ -187,14 +182,13 @@ We welcome contributions! Please follow these guidelines:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-### Commit Message Convention
+### Commit Convention
 
-- `feat:` New feature
-- `fix:` Bug fix
-- `docs:` Documentation changes
+- `feat:` New features
+- `fix:` Bug fixes
+- `docs:` Documentation updates
 - `refactor:` Code refactoring
-- `test:` Test changes
-- `chore:` Build/tooling changes
+- `test:` Test additions/updates
 
 ---
 
@@ -207,381 +201,369 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <a name="简体中文"></a>
 ## 🎉 项目介绍
 
-**DocuMind** 是一款轻量级、零依赖的文档智能处理引擎，能够将复杂的文档转换为结构化的知识。完全基于 Python 标准库构建，无需任何外部依赖即可提供强大的文档分析能力。
+DocuMind 是一个**零依赖**、**本地优先**的文档解析与结构化数据提取工具。灵感来自 Microsoft 的 markitdown 和 LlamaIndex 的 liteparse 等热门项目，DocuMind 专注于提供轻量级、快速、智能的文档处理解决方案。
 
-### 💡 为什么选择 DocuMind？
+### ✨ 核心差异化亮点
 
-- **🚀 零依赖**: 仅使用 Python 标准库 - 告别 pip 安装噩梦
-- **📄 多格式支持**: 开箱即用支持 PDF、TXT、Markdown、DOCX
-- **🧠 智能分析**: 自动摘要、关键词提取、知识图谱生成
-- **⚡ 轻量快速**: 极小的资源占用，闪电般的处理速度
-- **🎯 开发者友好**: 简洁的 API、TUI 界面、易于集成
+- 🚀 **零依赖设计**: 仅使用 Python 标准库 - 无需外部包
+- 🔒 **隐私优先**: 所有处理都在本地完成 - 数据永不离开您的机器
+- ⚡ **极速处理**: 针对速度优化，资源占用极低
+- 🎯 **多格式支持**: 支持 TXT、MD、HTML、JSON、CSV、XML 等格式
+- 🤖 **AI就绪输出**: 结构化输出，完美适配大语言模型
 
-### ✨ 核心特性
+---
 
-| 特性 | 描述 |
-|------|------|
-| 📖 **多格式解析** | 从 PDF、TXT、Markdown、DOCX 文件中提取内容 |
-| 📝 **智能摘要** | 使用 TF-IDF 生成简洁的文档摘要 |
-| 🔑 **关键词提取** | 自动识别重要术语和概念 |
-| 🕸️ **知识图谱** | 从文档构建实体关系图谱 |
-| 📊 **元数据提取** | 提取标题、标题、代码块、表格、链接 |
-| 🗂️ **批量处理** | 递归处理整个目录 |
-| 🖥️ **TUI 界面** | 美观的终端界面，带进度条和颜色 |
-| 📤 **JSON 导出** | 导出结果以供进一步分析 |
+## ✨ 核心特性
+
+| 特性 | 描述 | 图标 |
+|------|------|------|
+| **文档解析** | 从多种格式提取文档结构 | 📄 |
+| **Markdown转换** | 将任何文档转换为干净的 Markdown | 📝 |
+| **数据提取** | 提取邮箱、URL、日期、实体 | 🔍 |
+| **内容分析** | 统计、关键词、情感、主题分析 | 📊 |
+| **批量处理** | 高效处理多个文件 | 🔄 |
+| **CLI界面** | 易于使用的命令行工具 | 💻 |
 
 ---
 
 ## 🚀 快速开始
 
-### 环境要求
-
-- Python 3.8 或更高版本
-- 无需外部依赖！
-
 ### 安装
 
 ```bash
 # 克隆仓库
-git clone https://github.com/gitstq/DocuMind.git
-cd DocuMind
+git clone https://github.com/yourusername/documind.git
+cd documind
 
-# 或通过 pip 安装（发布后）
-pip install documind
+# 安装包
+pip install -e .
 ```
 
-### 使用方法
+### 基本用法
 
 ```bash
-# 处理单个文件
-python documind.py document.pdf
+# 解析文档
+documind parse document.txt
 
-# 使用所有功能
-python documind.py article.md --knowledge-graph --output result.json
+# 转换为 Markdown
+documind convert document.html -o output.md
 
-# 批量处理目录
-python documind.py ./documents --recursive --output batch_results.json
+# 提取结构化数据
+documind extract document.txt -o data.json
 
-# 跳过摘要生成
-python documind.py report.txt --no-summary
+# 分析内容
+documind analyze document.txt -o report.md
+
+# 批量处理
+documind batch file1.txt file2.md file3.html -o ./output --command convert
 ```
 
 ---
 
 ## 📖 详细使用指南
 
-### 命令行选项
-
-```bash
-python documind.py [输入] [选项]
-
-参数:
-  输入                  输入文件或目录
-
-选项:
-  -r, --recursive       递归处理目录
-  -o, --output 文件     导出结果到 JSON 文件
-  --no-summary          跳过摘要生成
-  --no-keywords         跳过关键词提取
-  -k, --knowledge-graph 构建知识图谱
-  -v, --version         显示版本信息
-  -h, --help            显示帮助信息
-```
-
-### Python API
+### 文档解析
 
 ```python
-from documind import DocumentProcessor
+from documind import DocumentParser
 
-# 初始化处理器
-processor = DocumentProcessor()
+parser = DocumentParser()
+doc = parser.parse("document.md")
 
-# 处理单个文件
-result = processor.process_file("document.pdf", {
-    'summarize': True,
-    'keywords': True,
-    'knowledge_graph': True
-})
-
-# 访问结果
-print(result['summary'])
-print(result['keywords'])
-print(result['knowledge_graph'])
-
-# 批量处理
-results = processor.process_directory("./docs", recursive=True)
+print(f"标题: {doc.title}")
+print(f"章节数: {len(doc.sections)}")
+print(doc.to_json())
 ```
 
-### 支持的格式
+### Markdown 转换
 
-| 格式 | 扩展名 | 特性 |
-|------|--------|------|
-| 纯文本 | `.txt` | 完全支持 |
-| Markdown | `.md`, `.markdown` | 标题、代码块、链接、列表、表格 |
-| PDF | `.pdf` | 文本提取 |
-| Word | `.docx` | 文本提取 |
+```python
+from documind import MarkdownConverter
+
+converter = MarkdownConverter()
+markdown = converter.convert("document.html", include_toc=True)
+print(markdown)
+```
+
+### 数据提取
+
+```python
+from documind import StructuredExtractor
+
+extractor = StructuredExtractor()
+data = extractor.extract_from_file("document.txt")
+
+print(f"找到的邮箱: {data.get('email', [])}")
+print(f"找到的URL: {data.get('url', [])}")
+```
+
+### 文档分析
+
+```python
+from documind import DocumentAnalyzer
+
+analyzer = DocumentAnalyzer()
+report = analyzer.analyze_file("document.txt")
+
+print(f"字数: {report['statistics']['word_count']}")
+print(f"情感: {report['sentiment']['sentiment']}")
+```
 
 ---
 
 ## 💡 设计理念
 
-### 零依赖架构
+### 为什么选择 DocuMind？
 
-DocuMind 完全基于 Python 标准库构建：
-- **PDF 解析**: 自定义二进制解析器，无需 PyPDF2
-- **DOCX 解析**: ZIP/XML 解析器，无需 python-docx
-- **文本分析**: 自定义 TF-IDF，无需 scikit-learn
-- **TUI**: ANSI 转义码，无需 rich/curses
+1. **简洁性**: 无需复杂设置或依赖
+2. **速度**: 性能优化
+3. **隐私**: 纯本地处理
+4. **灵活性**: 适用于任何 Python 环境
 
-### 性能优化
+### 技术选型
 
-- 大文件流式处理
-- 内存高效的文本分析
-- 支持并行处理（未来）
+- **纯 Python**: 最大兼容性
+- **仅标准库**: 零依赖开销
+- **模块化设计**: 按需使用
+- **类型提示**: 完整类型安全支持
 
 ---
 
 ## 📦 打包与部署
 
-### 构建可执行文件
+### 构建包
 
 ```bash
-# 安装 PyInstaller
-pip install pyinstaller
+# 构建 wheel
+python -m build
 
-# 构建独立可执行文件
-pyinstaller --onefile --name documind documind.py
+# 本地安装
+pip install dist/documind-1.0.0-py3-none-any.whl
 ```
 
-### 作为包安装
+### 运行测试
 
 ```bash
-pip install -e .
+# 运行所有测试
+python -m unittest discover tests/ -v
 
-# 然后全局使用
-documind document.pdf
+# 运行特定测试
+python -m unittest tests.test_parser
 ```
 
 ---
 
 ## 🤝 贡献指南
 
-我们欢迎贡献！请遵循以下准则：
+欢迎贡献！请遵循以下准则：
 
-1. Fork 仓库
+1. Fork 本仓库
 2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
 3. 提交更改 (`git commit -m 'feat: add amazing feature'`)
 4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 打开 Pull Request
+5. 创建 Pull Request
 
-### 提交信息规范
+### 提交规范
 
 - `feat:` 新功能
-- `fix:` Bug 修复
-- `docs:` 文档更改
+- `fix:` 修复问题
+- `docs:` 文档更新
 - `refactor:` 代码重构
-- `test:` 测试更改
-- `chore:` 构建/工具更改
+- `test:` 测试添加/更新
 
 ---
 
 ## 📄 开源协议
 
-本项目采用 MIT 协议 - 查看 [LICENSE](LICENSE) 文件了解详情。
+本项目采用 MIT 协议开源 - 详情请参见 [LICENSE](LICENSE) 文件。
 
 ---
 
 <a name="繁體中文"></a>
 ## 🎉 專案介紹
 
-**DocuMind** 是一款輕量級、零依賴的文件智慧處理引擎，能夠將複雜的文件轉換為結構化的知識。完全基於 Python 標準庫構建，無需任何外部依賴即可提供強大的文件分析能力。
+DocuMind 是一個**零依賴**、**本地優先**的文件解析與結構化資料提取工具。靈感來自 Microsoft 的 markitdown 和 LlamaIndex 的 liteparse 等熱門專案，DocuMind 專注於提供輕量級、快速、智慧的文件處理解決方案。
 
-### 💡 為什麼選擇 DocuMind？
+### ✨ 核心差異化亮點
 
-- **🚀 零依賴**: 僅使用 Python 標準庫 - 告別 pip 安裝噩夢
-- **📄 多格式支援**: 開箱即用支援 PDF、TXT、Markdown、DOCX
-- **🧠 智慧分析**: 自動摘要、關鍵詞提取、知識圖譜生成
-- **⚡ 輕量快速**: 極小的資源佔用，閃電般的處理速度
-- **🎯 開發者友好**: 簡潔的 API、TUI 介面、易於整合
+- 🚀 **零依賴設計**: 僅使用 Python 標準庫 - 無需外部套件
+- 🔒 **隱私優先**: 所有處理都在本地完成 - 資料永不離開您的機器
+- ⚡ **極速處理**: 針對速度優化，資源占用極低
+- 🎯 **多格式支援**: 支援 TXT、MD、HTML、JSON、CSV、XML 等格式
+- 🤖 **AI就緒輸出**: 結構化輸出，完美適配大語言模型
 
-### ✨ 核心特性
+---
 
-| 特性 | 描述 |
-|------|------|
-| 📖 **多格式解析** | 從 PDF、TXT、Markdown、DOCX 文件中提取內容 |
-| 📝 **智慧摘要** | 使用 TF-IDF 生成簡潔的文件摘要 |
-| 🔑 **關鍵詞提取** | 自動識別重要術語和概念 |
-| 🕸️ **知識圖譜** | 從文件構建實體關係圖譜 |
-| 📊 **元資料提取** | 提取標題、標題、程式碼塊、表格、連結 |
-| 🗂️ **批次處理** | 遞迴處理整個目錄 |
-| 🖥️ **TUI 介面** | 美觀的終端介面，帶進度條和顏色 |
-| 📤 **JSON 匯出** | 匯出結果以供進一步分析 |
+## ✨ 核心特性
+
+| 特性 | 描述 | 圖示 |
+|------|------|------|
+| **文件解析** | 從多種格式提取文件結構 | 📄 |
+| **Markdown轉換** | 將任何文件轉換為乾淨的 Markdown | 📝 |
+| **資料提取** | 提取郵箱、URL、日期、實體 | 🔍 |
+| **內容分析** | 統計、關鍵詞、情感、主題分析 | 📊 |
+| **批次處理** | 高效處理多個文件 | 🔄 |
+| **CLI介面** | 易於使用的命令列工具 | 💻 |
 
 ---
 
 ## 🚀 快速開始
 
-### 環境要求
-
-- Python 3.8 或更高版本
-- 無需外部依賴！
-
 ### 安裝
 
 ```bash
 # 克隆倉庫
-git clone https://github.com/gitstq/DocuMind.git
-cd DocuMind
+git clone https://github.com/yourusername/documind.git
+cd documind
 
-# 或透過 pip 安裝（發布後）
-pip install documind
+# 安裝套件
+pip install -e .
 ```
 
-### 使用方法
+### 基本用法
 
 ```bash
-# 處理單個文件
-python documind.py document.pdf
+# 解析文件
+documind parse document.txt
 
-# 使用所有功能
-python documind.py article.md --knowledge-graph --output result.json
+# 轉換為 Markdown
+documind convert document.html -o output.md
 
-# 批次處理目錄
-python documind.py ./documents --recursive --output batch_results.json
+# 提取結構化資料
+documind extract document.txt -o data.json
 
-# 跳過摘要生成
-python documind.py report.txt --no-summary
+# 分析內容
+documind analyze document.txt -o report.md
+
+# 批次處理
+documind batch file1.txt file2.md file3.html -o ./output --command convert
 ```
 
 ---
 
 ## 📖 詳細使用指南
 
-### 命令列選項
-
-```bash
-python documind.py [輸入] [選項]
-
-參數:
-  輸入                  輸入文件或目錄
-
-選項:
-  -r, --recursive       遞迴處理目錄
-  -o, --output 檔案     匯出結果到 JSON 檔案
-  --no-summary          跳過摘要生成
-  --no-keywords         跳過關鍵詞提取
-  -k, --knowledge-graph 構建知識圖譜
-  -v, --version         顯示版本資訊
-  -h, --help            顯示幫助資訊
-```
-
-### Python API
+### 文件解析
 
 ```python
-from documind import DocumentProcessor
+from documind import DocumentParser
 
-# 初始化處理器
-processor = DocumentProcessor()
+parser = DocumentParser()
+doc = parser.parse("document.md")
 
-# 處理單個文件
-result = processor.process_file("document.pdf", {
-    'summarize': True,
-    'keywords': True,
-    'knowledge_graph': True
-})
-
-# 訪問結果
-print(result['summary'])
-print(result['keywords'])
-print(result['knowledge_graph'])
-
-# 批次處理
-results = processor.process_directory("./docs", recursive=True)
+print(f"標題: {doc.title}")
+print(f"章節數: {len(doc.sections)}")
+print(doc.to_json())
 ```
 
-### 支援的格式
+### Markdown 轉換
 
-| 格式 | 擴展名 | 特性 |
-|------|--------|------|
-| 純文字 | `.txt` | 完全支援 |
-| Markdown | `.md`, `.markdown` | 標題、程式碼塊、連結、列表、表格 |
-| PDF | `.pdf` | 文字提取 |
-| Word | `.docx` | 文字提取 |
+```python
+from documind import MarkdownConverter
+
+converter = MarkdownConverter()
+markdown = converter.convert("document.html", include_toc=True)
+print(markdown)
+```
+
+### 資料提取
+
+```python
+from documind import StructuredExtractor
+
+extractor = StructuredExtractor()
+data = extractor.extract_from_file("document.txt")
+
+print(f"找到的郵箱: {data.get('email', [])}")
+print(f"找到的URL: {data.get('url', [])}")
+```
+
+### 文件分析
+
+```python
+from documind import DocumentAnalyzer
+
+analyzer = DocumentAnalyzer()
+report = analyzer.analyze_file("document.txt")
+
+print(f"字數: {report['statistics']['word_count']}")
+print(f"情感: {report['sentiment']['sentiment']}")
+```
 
 ---
 
 ## 💡 設計理念
 
-### 零依賴架構
+### 為什麼選擇 DocuMind？
 
-DocuMind 完全基於 Python 標準庫構建：
-- **PDF 解析**: 自定義二進位制解析器，無需 PyPDF2
-- **DOCX 解析**: ZIP/XML 解析器，無需 python-docx
-- **文字分析**: 自定義 TF-IDF，無需 scikit-learn
-- **TUI**: ANSI 轉義碼，無需 rich/curses
+1. **簡潔性**: 無需複雜設定或依賴
+2. **速度**: 效能優化
+3. **隱私**: 純本地處理
+4. **靈活性**: 適用於任何 Python 環境
 
-### 效能最佳化
+### 技術選型
 
-- 大檔案流式處理
-- 記憶體高效的文字分析
-- 支援並行處理（未來）
+- **純 Python**: 最大相容性
+- **僅標準庫**: 零依賴開銷
+- **模組化設計**: 按需使用
+- **類型提示**: 完整類型安全支援
 
 ---
 
 ## 📦 打包與部署
 
-### 構建可執行檔案
+### 構建套件
 
 ```bash
-# 安裝 PyInstaller
-pip install pyinstaller
+# 構建 wheel
+python -m build
 
-# 構建獨立可執行檔案
-pyinstaller --onefile --name documind documind.py
+# 本地安裝
+pip install dist/documind-1.0.0-py3-none-any.whl
 ```
 
-### 作為包安裝
+### 執行測試
 
 ```bash
-pip install -e .
+# 執行所有測試
+python -m unittest discover tests/ -v
 
-# 然後全域性使用
-documind document.pdf
+# 執行特定測試
+python -m unittest tests.test_parser
 ```
 
 ---
 
 ## 🤝 貢獻指南
 
-我們歡迎貢獻！請遵循以下準則：
+歡迎貢獻！請遵循以下準則：
 
-1. Fork 倉庫
+1. Fork 本倉庫
 2. 建立功能分支 (`git checkout -b feature/amazing-feature`)
 3. 提交更改 (`git commit -m 'feat: add amazing feature'`)
 4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 開啟 Pull Request
+5. 建立 Pull Request
 
-### 提交資訊規範
+### 提交規範
 
 - `feat:` 新功能
-- `fix:` Bug 修復
-- `docs:` 文件更改
+- `fix:` 修復問題
+- `docs:` 文件更新
 - `refactor:` 程式碼重構
-- `test:` 測試更改
-- `chore:` 構建/工具更改
+- `test:` 測試新增/更新
 
 ---
 
 ## 📄 開源協議
 
-本專案採用 MIT 協議 - 檢視 [LICENSE](LICENSE) 檔案瞭解詳情。
+本專案採用 MIT 協議開源 - 詳情請參見 [LICENSE](LICENSE) 文件。
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by the DocuMind Team**
+**Made with ❤️ by DocuMind Team**
 
-[⭐ Star us on GitHub](https://github.com/gitstq/DocuMind) | [🐛 Report Bug](https://github.com/gitstq/DocuMind/issues) | [💡 Request Feature](https://github.com/gitstq/DocuMind/issues)
+⭐ Star us on GitHub if you find this project helpful!
 
 </div>
