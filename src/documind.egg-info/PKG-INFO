@@ -1,0 +1,33 @@
+Metadata-Version: 2.4
+Name: documind
+Version: 1.0.0
+Summary: Lightweight AI Document Intelligence Parser - 轻量级AI文档智能解析工具
+Home-page: https://github.com/yourusername/documind
+Author: DocuMind Team
+Author-email: DocuMind Team <documind@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/yourusername/documind
+Project-URL: Documentation, https://github.com/yourusername/documind#readme
+Project-URL: Repository, https://github.com/yourusername/documind
+Project-URL: Bug Tracker, https://github.com/yourusername/documind/issues
+Keywords: document,parser,markdown,converter,extractor,analyzer
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Markup
+Classifier: Topic :: Utilities
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
