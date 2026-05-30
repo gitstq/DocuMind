@@ -1,3 +1,11 @@
-# DocuMind - Zero Dependency Document Processing Engine
-# No external dependencies required - uses only Python standard library
-# Python 3.8+ recommended
+# DocuMind - Zero-Dependency Design
+# DocuMind - 零依赖设计
+
+# This project uses only Python standard library
+# 本项目仅使用Python标准库
+
+# No external dependencies required!
+# 无需外部依赖！
+
+# Optional development dependencies (install with: pip install -r requirements-dev.txt)
+# 可选开发依赖（使用以下命令安装: pip install -r requirements-dev.txt）
